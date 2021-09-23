@@ -1,10 +1,10 @@
 <?php
                 // API E-GOV UNTUK HANDLE REQUEST DATA ROLE
                 
-                $DB_HOST        = 'INSERT_HERE_YOUR_DATABASE_HOST';
-                $DB_USER        = 'INSERT_HERE_YOUR_DATABASE_USER';
-                $DB_PASS        = 'INSERT_HERE_YOUR_DATABASE_PASSWORD';
-                $DB_NAME        = 'INSERT_HERE_YOUR_DATANASE_NAME';
+                $DB_HOST        = 'localhost';
+                $DB_USER        = 'mp_user';
+                $DB_PASS        = 'mp_password';
+                $DB_NAME        = 'mp_db';
                 
                 $this_user_key  = 'a7498-53a31217e594218e680dbc01590f068a';
                 $this_user_pass = 'f653cc1d3e';
