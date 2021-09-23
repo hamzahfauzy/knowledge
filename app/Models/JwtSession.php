@@ -10,10 +10,10 @@ class JwtSession
         $roles      = $val->roles;
         $domain     = env('APP_DOMAIN_NAME','');
         $key        = array_search($domain, array_column($roles, 'domain'));
-        if(isset($roles[$key]))
+        $role       = $roles[$key];
+        $role_name  = config('reference.role');
+        if(isset($role_name[$role->role_id]))
         {
-            $role       = $roles[$key];
-            $role_name  = config('reference.role');
             $role->name = $role_name[$role->role_id];
             
             self::$user = $val;
