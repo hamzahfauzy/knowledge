@@ -17,7 +17,7 @@ class CreatePostSharesTable extends Migration
             $table->id();
             $table->foreignId('post_id')->constrained()->cascadeOnDelete();
             $table->string('opd_id');
-            $table->string('opd_name');
+            $table->string('opd_name')->nullable();
         });
     }
 

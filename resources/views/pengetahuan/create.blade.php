@@ -25,16 +25,19 @@
                         <div class="d-flex">
                             <div class="form-check mr-3">
                                 <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="visibility" id="optionsRadios1" value="internal">
+                                <input type="radio" class="form-check-input" name="visibility" id="optionsRadios1" value="internal" onchange="get_opds(this.value)">
                                 Internal
                                 <i class="input-helper"></i></label>
                             </div>
                             <div class="form-check">
                                 <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="visibility" id="optionsRadios2" value="public" checked="">
+                                <input type="radio" class="form-check-input" name="visibility" id="optionsRadios2" value="public" checked="" onchange="get_opds(this.value)">
                                 Publik
                                 <i class="input-helper"></i></label>
                             </div>
+                        </div>
+                        <div class="opd d-none">
+                            <select name="opds[]" class="form-control opd_lists" multiple></select>
                         </div>
                     </div>
                     <button class="btn btn-primary btn-block">Publish</button>

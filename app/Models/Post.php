@@ -16,6 +16,11 @@ class Post extends Model
         return $this->belongsToMany(Category::class,'post_categories');
     }
 
+    public function shares()
+    {
+        return $this->hasMany(PostShare::class);
+    }
+
     public function slugs($slug)
     {
         $data = Post::where('slug',$slug);

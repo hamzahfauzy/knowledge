@@ -58,6 +58,16 @@ class PengetahuanController extends Controller
         $pengetahuan = $this->model->create($data);
         if(isset($data['categories']))
             $pengetahuan->categories()->sync($data['categories']);
+        if(isset($data['opds']))
+        {
+            foreach($data['opds'] as $opd)
+            {
+                $pengetahuan->shares()->create([
+                    'post_id' => $pengetahuan->id,
+                    'opd_id' => $opd,
+                ]);
+            }
+        }
         return redirect()->route('pengetahuan.edit',$pengetahuan->id)->with('success', 'Pengetahuan berhasil ditambah');
     }
 
@@ -113,6 +123,18 @@ class PengetahuanController extends Controller
             $model->categories()->sync($request->categories);
         else
             $model->categories()->sync([]);
+
+        $model->shares()->delete();
+        if(isset($request['opds']))
+        {
+            foreach($request['opds'] as $opd)
+            {
+                $model->shares()->create([
+                    'post_id' => $model->id,
+                    'opd_id' => $opd,
+                ]);
+            }
+        }
         return redirect()->route('pengetahuan.edit',$pengetahuan)->with('success', 'Pengetahuan berhasil diubah!');
     }
 

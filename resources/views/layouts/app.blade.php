@@ -122,6 +122,69 @@
         tabsize: 2
       });
     }
+
+    var opds = []
+    async function get_opds(val)
+    {
+        if(val == 'public')
+        {
+            document.querySelector('.opd').classList.toggle('d-none')
+            return
+        }
+        else
+            document.querySelector('.opd').classList.toggle('d-none')
+        var opd = []
+        if(opds.length)
+            opd = opds
+        else
+        {
+            var formData = new FormData;
+            formData.append('user_key','64240-d0ede73ccaf823f30d586a5ff9a35fa5')
+            formData.append('pass_key','b546a6dfc4')
+            var request = await fetch('https://layanan.labura.go.id/api/getSkpd',{
+                method:'POST',
+                body:formData
+            })
+
+            opd = await request.json()
+        }
+
+        var lists = ''
+        for(i in opd)
+        {
+          var el = opd[i]
+          lists += '<option value="'+el.id_skpd+'">'+el.nama_skpd+'</option>'
+        }
+
+        document.querySelector('.opd_lists').innerHTML = lists
+        $('.opd_lists').select2()
+    }
+
+    async function init_opds(opd_lists)
+    {
+      var ids = []
+      for(j=0;j<opd_lists.length;j++)
+        ids.push(opd_lists[j].opd_id)
+      var formData = new FormData;
+      formData.append('user_key','64240-d0ede73ccaf823f30d586a5ff9a35fa5')
+      formData.append('pass_key','b546a6dfc4')
+      var request = await fetch('https://layanan.labura.go.id/api/getSkpd',{
+          method:'POST',
+          body:formData
+      })
+
+      opd = await request.json()
+      var lists = ''
+      for(i in opd)
+      {
+        var el = opd[i]
+        var selected = ids.includes(el.id_skpd) ? 'selected' : '';
+        lists += '<option value="'+el.id_skpd+'" '+selected+'>'+el.nama_skpd+'</option>'
+      }
+
+      document.querySelector('.opd_lists').innerHTML = lists
+      $('.opd_lists').select2()
+    }
   </script>
 
   @yield('script')
