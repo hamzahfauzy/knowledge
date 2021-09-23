@@ -1,6 +1,6 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/wbs/
+    - export DEPLOYPATH=/home/mp/
     - /bin/cp -a * $DEPLOYPATH
-    - /bin/cp -r public/. /home/wbs/public_html
+    - /bin/cp -r public/. /home/mp/public_html
