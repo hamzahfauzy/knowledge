@@ -25,6 +25,10 @@ use App\Models\Post;
 |
 */
 
+Route::get('auth/login',function(){
+    return redirect()->route('home');
+});
+
 Route::middleware('jwt_middleware')->group(function () {
 
     Route::get('/', function () {
@@ -37,7 +41,7 @@ Route::middleware('jwt_middleware')->group(function () {
         }
         $posts = $posts->orderby('id','DESC')->paginate(20);
         return view('welcome',compact('posts'));
-    });
+    })->name('home');
 
     Route::prefix('otp')->name('otp.')->group(function () {
         Route::get('/', [OtpAuthController::class, 'index'])->name('index');
