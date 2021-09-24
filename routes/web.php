@@ -25,7 +25,7 @@ use App\Models\Post;
 |
 */
 
-Route::get('auth/login',function(){
+Route::get('auth/login/{id}/{token}',function(){
     return redirect()->route('home');
 });
 
