@@ -51,6 +51,9 @@
     .note-editable {
       background:#FFF;
     }
+    .profile-feed img {
+      max-width: 100% !important;
+    }
   </style>
 </head>
 
