@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="{{asset('vendors/jquery-tags-input/jquery.tagsinput.min.css')}}">
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="{{asset('css/horizontal-layout-light/style.css')}}">
+  <link rel="stylesheet" href="https://layanan.labura.go.id/assets/css/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="{{asset('images/logo.png')}}" />
   <style>
