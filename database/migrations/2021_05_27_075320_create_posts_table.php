@@ -19,7 +19,7 @@ class CreatePostsTable extends Migration
             $table->string('posted_by_name');
             $table->string('title');
             $table->string('slug');
-            $table->text('content');
+            $table->longText('content');
             $table->string('visibility'); // draft, publish
             $table->text('tags')->nullable();
             $table->timestamps();
