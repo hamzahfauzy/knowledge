@@ -27,7 +27,7 @@
             <input type="text" name="keyword" id="" class="form-control rounded-0" placeholder="Cari Pengetahuan ..." style="height:auto;padding-left:40px;">
         </form>
     </div>
-    <div class="col-12 col-md-8 mx-auto">
+    <div class="col-12">
         <div class="profile-feed">
             @forelse($posts as $post)
             <div class="card mb-3">
