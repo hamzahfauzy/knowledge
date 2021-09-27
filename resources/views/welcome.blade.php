@@ -4,7 +4,7 @@
 <?php $user = App\Models\JwtSession::user() ?>
 @if($user)
 <div class="row">
-    <div class="col-12 col-md-8 mx-auto mb-3">
+    <div class="col-12 mb-3">
         <div class="card">
             <div class="card-header">
                 <span class="h5 mb-4 text-gray-800">Sistem Informasi Manajemen Pengetahuan Kab. Labuhanbatu Utara</span>
@@ -18,7 +18,7 @@
 @endif
 
 <div class="row">
-    <div class="col-12 col-md-8 mx-auto mb-3">
+    <div class="col-12 mb-3">
         <form action="" class="position-relative">
             @if(isset($_GET['page']))
             <input type="hidden" name="page" value="{{$_GET['page']}}">
@@ -71,7 +71,7 @@
                             --}}
                             </p>
                             <br>
-                            {!! \Illuminate\Support\Str::limit(strip_tags($post->content), 50, ' - <a href="'.route('detail',$post->slug).'">Selengkapnya</a>') !!}
+                            {!! \Illuminate\Support\Str::limit(strip_tags($post->content), 400, ' - <a href="'.route('detail',$post->slug).'">Selengkapnya</a>') !!}
                         </div>
                     </div>
                 </div>

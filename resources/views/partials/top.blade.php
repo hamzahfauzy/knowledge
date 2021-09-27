@@ -2,8 +2,8 @@
 <nav class="navbar top-navbar col-lg-12 col-12 p-0">
     <div class="container">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-            <a class="navbar-brand brand-logo text-white font-weight-bold" href="{{url()->to('/')}}"><img src="{{asset('images/logo.png')}}" style="height:58px!important;"> Pengetahuan</a>
-            <a class="navbar-brand brand-logo-mini text-white font-weight-bold" href="{{url()->to('/')}}"><img src="{{asset('images/logo.png')}}" style="height:58px!important;"> Pengetahuan</a>
+            <a class="navbar-brand brand-logo text-white font-weight-bold" href="{{url()->to('/')}}">Pengetahuan</a>
+            <a class="navbar-brand brand-logo-mini text-white font-weight-bold" href="{{url()->to('/')}}">Pengetahuan</a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         @if($user)

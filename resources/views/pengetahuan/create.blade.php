@@ -7,7 +7,7 @@
         <div class="col-12">
             <h4>Buat Pengetahuan</h4>
         </div>
-        <div class="col-12 col-md-9">
+        <div class="col-12 col-lg-9">
             <div class="form-group">
                 <input type="text" name="title" class="form-control" id="judul" placeholder="Judul Pengetahuan" required>
             </div>
@@ -15,7 +15,7 @@
                 <textarea name="content" id="summernoteExample" required></textarea>
             </div>
         </div>
-        <div class="col-12 col-md-3">
+        <div class="col-12 col-lg-3">
             <div class="card mb-2">
                 <div class="card-header">
                     <span class="h5 mb-4 text-gray-800">Bagikan Kepada</span>
