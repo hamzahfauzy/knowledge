@@ -57,6 +57,9 @@
     .post-content {
       font-size:14px;
     }
+    .select2 {
+      max-width:100%;
+    }
   </style>
 </head>
 
