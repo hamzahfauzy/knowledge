@@ -137,7 +137,7 @@
 @section('script')
 <script>
 @if(isset($_GET['filter']['opd']) && !empty($_GET['filter']['opd']))
-init_opds({!!json_encode([$_GET['filter']['opd']])!!})
+init_opds({!!json_encode(["opd_id":$_GET['filter']['opd']])!!})
 @else
 get_opds(false)
 @endif
