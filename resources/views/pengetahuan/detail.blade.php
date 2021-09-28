@@ -7,7 +7,7 @@
             <div class="card mb-3">
                 <div class="card-body">
                     <div class="ms-4">
-                        <h3 class="h3"><a href="{{route('detail',$post->slug)}}" class="text-decoration-none" title="{{$post->title}}">{{$post->title}}</a></h3>
+                        <h4 class="h4"><a href="{{route('detail',$post->slug)}}" class="text-decoration-none" title="{{$post->title}}">{{$post->title}}</a></h4>
                         <h6>
                         Oleh : {{$post->posted_by_name}}&nbsp;
                         <small class="ms-4 text-muted"><i class="ti-time mr-1"></i>{{$post->posted_date}}</small>
@@ -35,7 +35,9 @@
                         </h6>
                     </div>
                     <hr>
-                    {!! $post->content !!}
+                    <div class="post-content">
+                        {!! $post->content !!}
+                    </div>
                 </div>
             </div>
         </div>

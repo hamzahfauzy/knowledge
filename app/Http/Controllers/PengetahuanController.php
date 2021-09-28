@@ -101,7 +101,11 @@ class PengetahuanController extends Controller
         //
         $user       = JwtSession::user();
         $categories = $this->category->get();
-        $model      = $this->model->where('id',$pengetahuan)->where('posted_by_id',$user->user_id)->firstOrFail();
+        $model      = [];
+        if($user->role->role_id==1)
+            $model      = $this->model->where('id',$pengetahuan)->firstOrFail();
+        else
+            $model      = $this->model->where('id',$pengetahuan)->where('posted_by_id',$user->user_id)->firstOrFail();
         $selected_categories = $model->categories?$model->categories()->pluck('post_categories.category_id')->toArray():[];
         return view('pengetahuan.edit',compact('categories','model','selected_categories'));
     }
@@ -117,7 +121,11 @@ class PengetahuanController extends Controller
     {
         //
         $user       = JwtSession::user();
-        $model      = $this->model->where('id',$pengetahuan)->where('posted_by_id',$user->user_id)->firstOrFail();
+        $model      = [];
+        if($user->role->role_id==1)
+            $model      = $this->model->where('id',$pengetahuan)->firstOrFail();
+        else
+            $model      = $this->model->where('id',$pengetahuan)->where('posted_by_id',$user->user_id)->firstOrFail();
         $model->update($request->all());
         if(isset($request->categories))
             $model->categories()->sync($request->categories);
@@ -147,7 +155,11 @@ class PengetahuanController extends Controller
     function delete($pengetahuan)
     {
         $user       = JwtSession::user();
-        $model      = $this->model->where('id',$pengetahuan)->where('posted_by_id',$user->user_id)->firstOrFail();
+        $model      = [];
+        if($user->role->role_id==1)
+            $model      = $this->model->where('id',$pengetahuan)->firstOrFail();
+        else
+            $model      = $this->model->where('id',$pengetahuan)->where('posted_by_id',$user->user_id)->firstOrFail();
         $model->delete();
         return redirect()->route('pengetahuan.index')->with('success', 'Pengetahuan Berhasil Dihapus');
     }

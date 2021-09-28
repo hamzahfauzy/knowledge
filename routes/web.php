@@ -1,18 +1,19 @@
 <?php
 
+use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\OtpAuthController;
+use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\PengetahuanController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\PenggunaController;
 use App\Http\Controllers\Admin\PengaduanController;
 use App\Http\Controllers\Admin\NotifEventController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Pengawas\DashboardController as PengawasDashboardController;
 use App\Http\Controllers\Pengawas\PengaduanController as PengawasPengaduanController;
-use App\Models\Post;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,15 +33,59 @@ Route::get('auth/login/{id}/{token}',function(){
 Route::middleware('jwt_middleware')->group(function () {
 
     Route::get('/', function () {
+        $categories = Category::get();
         $posts = Post::where('visibility','public');
+        if(isset($_GET['filter']))
+        {
+            if(!empty($_GET['filter']['opd']))
+            {
+                $posts = $posts->whereHas('shares',function($q) {
+                    $q->where('opd_id',$_GET['filter']['opd']);
+                });
+            }
+
+            if(!empty($_GET['filter']['category']))
+            {
+                $posts = $posts->whereHas('categories',function($q) {
+                    $q->where('category_id',$_GET['filter']['category']);
+                });
+            }
+
+            if(!empty($_GET['filter']['tag']))
+            {
+                $posts = $posts->where('tags','LIKE','%'.$_GET['filter']['tag'].'%');
+            }
+        }
+
         if(isset($_GET['keyword']))
         {
             $posts = $posts->where('title','LIKE','%'.$_GET['keyword'].'%');
             $posts = $posts->orwhere('visibility','public');
+            if(isset($_GET['filter']))
+            {
+                if(!empty($_GET['filter']['opd']))
+                {
+                    $posts = $posts->whereHas('shares',function($q) {
+                        $q->where('opd_id',$_GET['filter']['opd']);
+                    });
+                }
+
+                if(!empty($_GET['filter']['category']))
+                {
+                    $posts = $posts->whereHas('categories',function($q) {
+                        $q->where('category_id',$_GET['filter']['category']);
+                    });
+                }
+
+                if(!empty($_GET['filter']['tag']))
+                {
+                    $posts = $posts->where('tags','LIKE','%'.$_GET['filter']['tag'].'%');
+                }
+            }
             $posts = $posts->where('content','LIKE','%'.$_GET['keyword'].'%');
         }
         $posts = $posts->orderby('id','DESC')->paginate(20);
-        return view('welcome',compact('posts'));
+        return view('welcome',compact('posts','categories'));
     })->name('home');
 
     Route::prefix('otp')->name('otp.')->group(function () {

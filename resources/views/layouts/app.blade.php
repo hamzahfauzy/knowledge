@@ -54,6 +54,9 @@
     .profile-feed img {
       max-width: 100% !important;
     }
+    .post-content {
+      font-size:14px;
+    }
   </style>
 </head>
 
@@ -108,7 +111,9 @@
 
   <script>
     $('.datatable').dataTable()
-    $('.select2').select2()
+    $('.select2').select2({
+      allowClear: true
+    })
     $('#tags').tagsInput({
       'width': '100%',
       'height': '75%',
@@ -159,8 +164,12 @@
           lists += '<option value="'+el.id_skpd+'">'+el.nama_skpd+'</option>'
         }
 
+        if(val == false)
+          lists = '<option value="">- Pilih -</option>' + lists
         document.querySelector('.opd_lists').innerHTML = lists
-        $('.opd_lists').select2()
+        $('.opd_lists').select2({
+          allowClear: true
+        })
     }
 
     async function init_opds(opd_lists)
@@ -186,7 +195,9 @@
       }
 
       document.querySelector('.opd_lists').innerHTML = lists
-      $('.opd_lists').select2()
+      $('.opd_lists').select2({
+        allowClear: true
+      })
     }
   </script>
 
