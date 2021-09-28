@@ -65,9 +65,7 @@ Route::middleware('jwt_middleware')->group(function () {
             {
                 if(!empty($_GET['filter']['opd']))
                 {
-                    $posts = $posts->whereHas('shares',function($q) {
-                        $q->where('opd_id',$_GET['filter']['opd']);
-                    });
+                    $posts = $posts->where('opd_id',$_GET['filter']['opd']);
                 }
 
                 if(!empty($_GET['filter']['category']))

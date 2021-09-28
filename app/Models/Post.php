@@ -9,7 +9,7 @@ class Post extends Model
 {
     use HasFactory;
 
-    public $fillable = ['posted_by_id','posted_by_name','title','slug','content','visibility','tags'];
+    public $fillable = ['opd_id','opd_name','posted_by_id','posted_by_name','title','slug','content','visibility','tags'];
 
     public function categories()
     {

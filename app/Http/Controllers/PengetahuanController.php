@@ -55,6 +55,8 @@ class PengetahuanController extends Controller
         $data = $request->all();
         $data['posted_by_id'] = $user->user_id;
         $data['posted_by_name'] = $user->nama;
+        $data['opd_id'] = $user->skpd_id;
+        $data['opd_name'] = $user->nama_opd;
         $pengetahuan = $this->model->create($data);
         if(isset($data['categories']))
             $pengetahuan->categories()->sync($data['categories']);
