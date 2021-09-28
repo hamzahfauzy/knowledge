@@ -114,12 +114,14 @@
                     </div>
                     <div class="form-group">
                         <label for="">Kategori</label>
-                        <select name="filter[category]" class="select2 w-100" data-placeholder="Pilih Kategori">
-                            <option value="">- Pilih -</option>
-                            @foreach($categories as $category)
-                            <option value="{{$category->id}}" {{isset($_GET['filter']['category']) && $_GET['filter']['category'] == $category->id ? 'selected=""' : ''}}>{{$category->title}}</option>
-                            @endforeach
-                        </select>
+                        <div>
+                            <select name="filter[category]" class="select2 w-100" data-placeholder="Pilih Kategori">
+                                <option value="">- Pilih -</option>
+                                @foreach($categories as $category)
+                                <option value="{{$category->id}}" {{isset($_GET['filter']['category']) && $_GET['filter']['category'] == $category->id ? 'selected=""' : ''}}>{{$category->title}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="">Tag</label>
