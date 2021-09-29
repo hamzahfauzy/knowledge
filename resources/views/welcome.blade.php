@@ -125,7 +125,13 @@
                     </div>
                     <div class="form-group">
                         <label for="">Tag</label>
-                        <input type="text" name="filter[tag]" class="form-control" id="" value="{{isset($_GET['filter']['tag'])?$_GET['filter']['tag']:''}}">
+                        <div>
+                            @forelse($tags as $tag)
+                            <a href="?filter[tag]={{$tag}}" class="badge badge-success" style="border-radius:6px;">{{$tag}}</a>
+                            @empty
+                            <i>Tidak ada tag</i>
+                            @endforelse
+                        </div>
                     </div>
                     <button class="btn btn-primary btn-block">Filter</button>
                 </form>

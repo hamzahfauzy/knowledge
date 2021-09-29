@@ -23,7 +23,7 @@ class PengetahuanController extends Controller
     {
         //
         $user  = JwtSession::user();
-        $model = $this->model->where('posted_by_id',$user->user_id)->get();
+        $model = $this->model->where('posted_by_id',$user->user_id)->orderby('id','desc')->get();
         return view('pengetahuan.index',compact('model'));
         
     }

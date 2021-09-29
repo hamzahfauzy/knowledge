@@ -35,6 +35,13 @@ Route::middleware('jwt_middleware')->group(function () {
     Route::get('/', function () {
         $categories = Category::get();
         $posts = Post::where('visibility','public');
+        
+        $tags = "";
+        $all_posts = $posts->get();
+        foreach($all_posts as $post)
+            $tags .= $post->tags;
+
+        $tags = array_unique(explode(',', $tags));
         if(isset($_GET['filter']))
         {
             if(!empty($_GET['filter']['opd']))
@@ -81,7 +88,7 @@ Route::middleware('jwt_middleware')->group(function () {
             $posts = $posts->where('content','LIKE','%'.$_GET['keyword'].'%');
         }
         $posts = $posts->orderby('id','DESC')->paginate(20);
-        return view('welcome',compact('posts','categories'));
+        return view('welcome',compact('posts','categories','tags'));
     })->name('home');
 
     Route::prefix('otp')->name('otp.')->group(function () {
