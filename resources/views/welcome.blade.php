@@ -127,7 +127,7 @@
                         <label for="">Tag</label>
                         <div>
                             @forelse($tags as $tag)
-                            <a href="?filter[tag]={{$tag}}" class="badge badge-success" style="border-radius:6px;">{{$tag}}</a>
+                            <a href="?filter[tag]={{$tag}}" class="badge badge-success" style="border-radius:6px;margin-bottom:6px;">{{$tag}}</a>
                             @empty
                             <i>Tidak ada tag</i>
                             @endforelse
