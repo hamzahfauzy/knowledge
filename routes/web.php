@@ -39,7 +39,7 @@ Route::middleware('jwt_middleware')->group(function () {
         $tags = "";
         $all_posts = $posts->get();
         foreach($all_posts as $post)
-            $tags .= $post->tags;
+            $tags .= ",".$post->tags;
 
         $tags = array_unique(explode(',', $tags));
         if(isset($_GET['filter']))
