@@ -40,7 +40,8 @@
                             <small class="ms-4 text-muted"><i class="ti-time mr-1"></i>{{$post->posted_date}}</small>
                             </h6>
                             <p class="small text-muted mt-2 mb-0">
-                            <span>Oleh : {{$post->posted_by_name}}</span> | 
+                            <span>Oleh : <a href="?filter[user]={{$post->posted_by_id}}">{{$post->posted_by_name}}</a></span>
+                            &nbsp; | &nbsp;
                             @forelse($post->categories as $key => $category)
                             <span>
                                 {{$category->title}}
@@ -67,7 +68,7 @@
                             </span>
                             </a>
                             &nbsp; | &nbsp;
-                            <a href="{{route('pengetahuan.delete',$post->id)}}" class="text-decoration-none" onclick="if(confirm('Hapus data ini ?')){return true}else{return false}">
+                            <a href="{{route('pengetahuan.delete',$post->id)}}" class="text-decoration-none text-danger" onclick="if(confirm('Hapus data ini ?')){return true}else{return false}">
                             <span class="mr-1">
                                 <i class="ti-trash mr-1"></i> Hapus
                             </span>
@@ -121,16 +122,6 @@
                                 <option value="{{$category->id}}" {{isset($_GET['filter']['category']) && $_GET['filter']['category'] == $category->id ? 'selected=""' : ''}}>{{$category->title}}</option>
                                 @endforeach
                             </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Tag</label>
-                        <div>
-                            @forelse($tags as $tag)
-                            <a href="?filter[tag]={{$tag}}" class="badge badge-success" style="border-radius:6px;margin-bottom:6px;">{{$tag}}</a>
-                            @empty
-                            <i>Tidak ada tag</i>
-                            @endforelse
                         </div>
                     </div>
                     <button class="btn btn-primary btn-block">Filter</button>

@@ -60,6 +60,11 @@ Route::middleware('jwt_middleware')->group(function () {
             {
                 $posts = $posts->where('tags','LIKE','%'.$_GET['filter']['tag'].'%');
             }
+
+            if(!empty($_GET['filter']['user']))
+            {
+                $posts = $posts->where('posted_by_id',$_GET['filter']['user']);
+            }
         }
 
         if(isset($_GET['keyword']))
@@ -84,12 +89,58 @@ Route::middleware('jwt_middleware')->group(function () {
                 {
                     $posts = $posts->where('tags','LIKE','%'.$_GET['filter']['tag'].'%');
                 }
+
+                if(!empty($_GET['filter']['user']))
+                {
+                    $posts = $posts->where('posted_by_id',$_GET['filter']['user']);
+                }
             }
             $posts = $posts->where('content','LIKE','%'.$_GET['keyword'].'%');
         }
         $posts = $posts->orderby('id','DESC')->paginate(20);
         return view('welcome',compact('posts','categories','tags'));
     })->name('home');
+
+    Route::get('/tags', function () {
+        $posts = Post::where('visibility','public')->get();
+        $tags = "";
+        foreach($posts as $post)
+        {
+            if($post->tags == "") continue;
+            $tags .= ",".$post->tags;
+        }
+        $tags = array_unique(explode(',', $tags));
+        foreach($tags as $key => $tag)
+        {
+            $num = Post::where('tags','LIKE','%'.$tag.'%')->count();
+            if($tag == "")
+                $tags[$key] = "Tanpa Tag ".$num;
+            else
+                $tags[$key] .= " ".$num;
+        }
+        return view('tags',compact('tags'));
+    });
+
+    Route::get('/statistic',function(){
+        $posts = Post::where('visibility','public');
+
+        if(isset($_GET['filter']))
+        {
+            if(!empty($_GET['filter']['bulan']) && !empty($_GET['filter']['tahun']))
+            {
+                $filter = $_GET['filter']['bulan'].'-'.$_GET['filter']['tahun'];
+                $from = '01-'.$filter;
+                $to = '31-'.$filter;
+                $posts = $posts->whereBetween('created_at',[$from,$to]);
+            }
+        }
+        
+        $posts = $posts->groupby('posted_by_id')
+                    ->select('posted_by_name','posted_by_id', DB::raw('count(*) as jumlah'))
+                    ->orderby('jumlah','desc')
+                    ->get();
+        return view('statistic',compact('posts'));
+    });
 
     Route::prefix('otp')->name('otp.')->group(function () {
         Route::get('/', [OtpAuthController::class, 'index'])->name('index');

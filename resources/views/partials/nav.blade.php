@@ -8,6 +8,12 @@
                 <span class="menu-title">Home</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url()->to('/tags')}}">
+                <i class="ti-tag menu-icon"></i>
+                <span class="menu-title">Tag</span>
+                </a>
+            </li>
             @if($user)
             <li class="nav-item">
                 <a class="nav-link" href="javascript:void(0)">
@@ -24,7 +30,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0)">
+                <a class="nav-link" href="{{url()->to('/statistic')}}">
                 <i class="ti-stats-up menu-icon"></i>
                 <span class="menu-title">Statistik</span>
                 </a>
