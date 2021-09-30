@@ -60,7 +60,7 @@
                                     <i class="ti-comment mr-1"></i>{{$post->conversations()->count()}}
                                 </span>
                             </a>
-                            @if($user->role->role_id == 1 || $user->user_id == $post->posted_by_id)
+                            @if($user && ($user->role->role_id == 1 || $user->user_id == $post->posted_by_id))
                             &nbsp; | &nbsp;
                             <a href="{{route('pengetahuan.edit',$post->id)}}" class="text-decoration-none">
                             <span class="mr-1">
