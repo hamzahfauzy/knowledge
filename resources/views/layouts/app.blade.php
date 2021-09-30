@@ -124,7 +124,7 @@
       'defaultText': 'Tag',
       'removeWithBackspace': true,
       'minChars': 0,
-      'maxChars': 20, // if not provided there is no limit
+      // 'maxChars': 20, // if not provided there is no limit
       'placeholderColor': '#666666'
     });
     if ($("#summernoteExample").length) {
