@@ -114,9 +114,9 @@ Route::middleware('jwt_middleware')->group(function () {
         {
             $num = Post::where('tags','LIKE','%'.$tag.'%')->count();
             if($tag == "")
-                $tags[$key] = "Tanpa Tag ".$num;
+                $tags[$key] = ['tag'=>'NULL','label'=>"Tanpa Tag (".$num.")"];
             else
-                $tags[$key] .= " ".$num;
+                $tags[$key] = ['tag'=>$tag,'label'=>$tag." (".$num.")"];;
         }
         return view('tags',compact('tags'));
     });
