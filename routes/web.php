@@ -130,9 +130,11 @@ Route::middleware('jwt_middleware')->group(function () {
         {
             if(!empty($_GET['filter']['bulan']) && !empty($_GET['filter']['tahun']))
             {
-                $filter = $_GET['filter']['bulan'].'-'.$_GET['filter']['tahun'];
-                $from = '01-'.$filter;
-                $to = '31-'.$filter;
+                $bulan = $_GET['filter']['bulan'];
+                $bulan = $bulan < 10 ? "0".$bulan : $bulan; 
+                $filter = $_GET['filter']['tahun'].'-'.$bulan;
+                $from = $filter.'-01 00:00:00';
+                $to = $filter.'-31 23:59:59';
                 $posts = $posts->whereBetween('created_at',[$from,$to]);
             }
         }
