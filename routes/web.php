@@ -87,7 +87,8 @@ Route::middleware('jwt_middleware')->group(function () {
 
                 if(!empty($_GET['filter']['tag']))
                 {
-                    $posts = $posts->where('tags','LIKE','%'.$_GET['filter']['tag'].'%');
+                    if($_GET['filter']['tag'] != 'NULL')
+                        $posts = $posts->where('tags','LIKE','%'.$_GET['filter']['tag'].'%');
                 }
 
                 if(!empty($_GET['filter']['user']))
