@@ -109,7 +109,8 @@ Route::middleware('jwt_middleware')->group(function () {
         foreach($posts as $post)
         {
             if($post->tags == "") continue;
-            $tags .= ",".$post->tags;
+            if($tags == "") $tags .= $post->tags;
+            else $tags .= ",".$post->tags;
         }
         $tags = array_unique(explode(',', $tags));
         foreach($tags as $key => $tag)
