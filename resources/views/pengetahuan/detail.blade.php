@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="row">
-    <div class="col-12">
+    <div class="col-12 col-sm-9">
         <div class="profile-feed">
             <div class="card mb-3">
                 <div class="card-body">
@@ -41,6 +41,9 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="col-12 col-lg-3">
+        @include("partials.right-sidebar")
     </div>
 </div>
 @endsection

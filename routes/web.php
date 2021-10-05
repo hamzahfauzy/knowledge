@@ -33,7 +33,6 @@ Route::get('auth/login/{id}/{token}',function(){
 Route::middleware('jwt_middleware')->group(function () {
 
     Route::get('/', function () {
-        $categories = Category::get();
         $posts = Post::where('visibility','public');
         
         $tags = "";
@@ -100,7 +99,7 @@ Route::middleware('jwt_middleware')->group(function () {
             $posts = $posts->where('content','LIKE','%'.$_GET['keyword'].'%');
         }
         $posts = $posts->orderby('id','DESC')->paginate(20);
-        return view('welcome',compact('posts','categories','tags'));
+        return view('welcome',compact('posts','tags'));
     })->name('home');
 
     Route::get('/tags', function () {
