@@ -55,7 +55,7 @@
                         <tr>
                             <td>{{++$key}}</td>
                             <td>{{$post->posted_by_name}}</td>
-                            <td><a href="{{url()->to('/')}}?filter[user]={{$post->posted_by_id}}">{{$post->jumlah}}</a></td>
+                            <td><a href="{{url()->to('/')}}?filter[user]={{$post->posted_by_id}}&filter[bulan]={{isset($_GET['filter']['bulan'])?$_GET['filter']['bulan']:''}}&filter[tahun]={{isset($_GET['filter']['tahun'])?$_GET['filter']['tahun']:''}}">{{$post->jumlah}}</a></td>
                         </tr>
                         @empty
                         <tr>

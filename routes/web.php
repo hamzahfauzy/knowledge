@@ -65,6 +65,16 @@ Route::middleware('jwt_middleware')->group(function () {
             {
                 $posts = $posts->where('posted_by_id',$_GET['filter']['user']);
             }
+
+            if(!empty($_GET['filter']['bulan']) && !empty($_GET['filter']['tahun']))
+            {
+                $bulan = $_GET['filter']['bulan'];
+                $bulan = $bulan < 10 ? "0".$bulan : $bulan; 
+                $filter = $_GET['filter']['tahun'].'-'.$bulan;
+                $from = $filter.'-01 00:00:00';
+                $to = $filter.'-31 23:59:59';
+                $posts = $posts->whereBetween('created_at',[$from,$to]);
+            }
         }
 
         if(isset($_GET['keyword']))
@@ -94,6 +104,16 @@ Route::middleware('jwt_middleware')->group(function () {
                 if(!empty($_GET['filter']['user']))
                 {
                     $posts = $posts->where('posted_by_id',$_GET['filter']['user']);
+                }
+
+                if(!empty($_GET['filter']['bulan']) && !empty($_GET['filter']['tahun']))
+                {
+                    $bulan = $_GET['filter']['bulan'];
+                    $bulan = $bulan < 10 ? "0".$bulan : $bulan; 
+                    $filter = $_GET['filter']['tahun'].'-'.$bulan;
+                    $from = $filter.'-01 00:00:00';
+                    $to = $filter.'-31 23:59:59';
+                    $posts = $posts->whereBetween('created_at',[$from,$to]);
                 }
             }
             $posts = $posts->where('content','LIKE','%'.$_GET['keyword'].'%');
