@@ -166,29 +166,6 @@ Route::middleware('jwt_middleware')->group(function () {
         return view('statistic',compact('posts'));
     });
 
-    Route::prefix('otp')->name('otp.')->group(function () {
-        Route::get('/', [OtpAuthController::class, 'index'])->name('index');
-        Route::post('send', [OtpAuthController::class, 'send'])->name('send');
-        Route::post('verified', [OtpAuthController::class, 'verified'])->name('verified');
-    });
-
-    Route::prefix('guest')->name('guest.')->group(function () {
-        Route::get('/', [GuestController::class, 'index'])->name('index');
-        Route::middleware('otp_auth')->group(function () {
-            Route::get('/', [GuestController::class, 'index'])->name('index');
-            Route::get('create', [GuestController::class, 'create'])->name('create');
-            Route::post('store', [GuestController::class, 'store'])->name('store');
-            Route::post('send-msg/{pengaduan}', [GuestController::class, 'sendMsg'])->name('send-msg');
-            Route::get('conversation/{pengaduan}', [GuestController::class, 'conversation'])->name('conversation');
-            Route::get('show/{pengaduan}', [GuestController::class, 'show'])->name('show');
-        });
-
-        // otp
-        Route::get('message-content/{pengaduan_id}',function(Pengaduan $pengaduan){
-            
-        })->name('message-content');
-    });
-
     Route::middleware('jwt_auth')->group(function () {
         Route::get('message-content/{pengaduan_id}',function(){
 
@@ -210,4 +187,5 @@ Route::middleware('jwt_middleware')->group(function () {
     });
 
     Route::get('{slug}',[PengetahuanController::class,'detail'])->name('detail');
+    Route::post('{slug}',[PengetahuanController::class,'comment'])->name('comment');
 });

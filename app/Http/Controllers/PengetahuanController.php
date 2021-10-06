@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Category;
 use App\Models\Post;
+use App\Models\Category;
 use App\Models\JwtSession;
+use App\Models\Conversation;
+use Illuminate\Http\Request;
 
 class PengetahuanController extends Controller
 {
@@ -71,6 +72,12 @@ class PengetahuanController extends Controller
             }
         }
         return redirect()->route('pengetahuan.edit',$pengetahuan->id)->with('success', 'Pengetahuan berhasil ditambah');
+    }
+
+    function comment(Request $request, $slug)
+    {
+        Conversation::create($request->except(['files']));
+        return redirect()->route('detail',$slug)->with('success', 'Komentar berhasil dikirim');
     }
 
     /**
