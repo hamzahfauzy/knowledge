@@ -16,7 +16,7 @@
             </li>
             @if($user)
             <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0)">
+                <a class="nav-link" href="#">
                 <i class="ti-book menu-icon"></i>
                 <span class="menu-title">Pengetahuan</span>
                 <i class="menu-arrow"></i>
@@ -24,7 +24,7 @@
                 <div class="submenu">
                     <ul class="submenu-item">
                         <li class="nav-item"><a class="nav-link" href="{{route('pengetahuan.create')}}">Buat Pengetahuan</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{route('pengetahuan.index')}}">Pengetahuan Saya</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{route('pengetahuan.me')}}">Pengetahuan Saya</a></li>
                         <!-- <li class="nav-item"><a class="nav-link" href="{{route('admin.notif.index')}}">Pengetahuan Berbintang</a></li> -->
                     </ul>
                 </div>

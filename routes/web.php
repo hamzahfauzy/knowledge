@@ -176,6 +176,7 @@ Route::middleware('jwt_middleware')->group(function () {
             return redirect()->to('https://layanan.labura.go.id');
         })->name('logout');
         Route::get('pengetahuan/{pengetahuan}/delete',[PengetahuanController::class,'delete'])->name('pengetahuan.delete');
+        Route::get('pengetahuan/me',[PengetahuanController::class,'index'])->name('pengetahuan.me');
         Route::resource('pengetahuan',PengetahuanController::class);
         Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
             Route::get('/', [AdminDashboardController::class, 'index'])->name('index');
